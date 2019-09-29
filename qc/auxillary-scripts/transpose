@@ -1,0 +1,27 @@
+#! /usr/local/packages/python-2.7.14//bin/python
+
+from sys import *
+from drabek import print_tabbed
+from collections import defaultdict
+
+# TODO add an option to intern or not
+# TODO add an option for different treatments of raggedness
+
+###############################################################################
+
+rows = None
+for line in stdin:
+  #fields = line[:-1].split('\t')
+  fields = map(intern, line[:-1].split('\t'))
+
+  if rows is None:
+    rows = [[field] for field in fields]
+  else:
+    #assert len(rows) == len(fields), (len(rows), len(fields))
+    if len(fields) < len(rows):
+      fields.extend([''] * (len(rows) - len(fields)))
+    for row, field in zip(rows, fields):
+      row.append(field)
+
+for row in rows:
+  print '\t'.join(row)

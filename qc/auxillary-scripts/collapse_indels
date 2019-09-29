@@ -1,0 +1,44 @@
+#! /usr/local/packages/Python-2.6.4/bin/python
+
+from sys import *
+from drabek import print_tabbed, read_fasta, translate_codon
+from collections import defaultdict
+
+###############################################################################
+
+lines = [line[:-1].split('\t') for line in stdin]
+
+#prev_ref_position = prev_ref_seq = prev_assembly_seq = prev_assembly_position = prev_buff = prev_dist = prev_r = prev_q = prev_ref_frm = prev_assembly_frm = prev_ref_contig = prev_assembly_contig = None
+
+start_cursor = 0
+while start_cursor < len(lines):
+  ref_position, ref_seq, assembly_seq, assembly_position, buff, dist, ref_frm, assembly_frm, ref_contig, assembly_contig = lines[start_cursor]
+  assert ref_frm == '1', lines[start_cursor]
+  ref_position = int(ref_position) - 1
+
+  if ref_seq == '.':
+    end_cursor = start_cursor + 1
+    while end_cursor < len(lines):
+      end_ref_position, end_ref_seq, end_assembly_seq, end_assembly_position, end_buff, end_dist, end_ref_frm, end_assembly_frm, end_ref_contig, end_assembly_contig = lines[end_cursor]
+      if end_ref_seq == '.' and end_ref_contig == ref_contig and int(end_ref_position) - 1 == ref_position:
+        assembly_seq += end_assembly_seq
+        end_cursor += 1
+      else:
+        break
+    if assembly_frm == '-1':
+      assembly_seq = assembly_seq[::-1]
+    start_cursor = end_cursor
+  elif assembly_seq == '.':
+    end_cursor = start_cursor + 1
+    while end_cursor < len(lines):
+      end_ref_position, end_ref_seq, end_assembly_seq, end_assembly_position, end_buff, end_dist, end_ref_frm, end_assembly_frm, end_ref_contig, end_assembly_contig = lines[end_cursor]
+      if end_assembly_seq == '.' and end_ref_contig == ref_contig and int(end_ref_position) - 1 - ref_position == end_cursor - start_cursor:
+        ref_seq += end_ref_seq
+        end_cursor += 1
+      else:
+        break
+    start_cursor = end_cursor
+  else:
+    start_cursor += 1
+
+  print_tabbed(ref_position + 1, ref_seq, assembly_seq, assembly_position, buff, dist, ref_frm, assembly_frm, ref_contig, assembly_contig)

@@ -1,0 +1,31 @@
+#! /usr/local/packages/python-2.7.14/bin/python
+
+from sys import *
+from drabek import print_tabbed 
+from collections import defaultdict
+
+###############################################################################
+
+ref_position_pct_idy = {}
+
+for line in stdin:
+  s1, e1, s2, e2, len_1, len_2, pct_idy, len_r, len_q, cov_r, cov_q, ref, qry = line[:-1].split('\t')
+
+  s1 = int(s1)
+  e1 = int(e1)
+  len_r = int(len_r)
+  pct_idy = float(pct_idy)
+
+  assert s1 <= e1, line
+
+  try:
+    position_pct_idy = ref_position_pct_idy[ref]
+  except:
+    position_pct_idy = ref_position_pct_idy[ref] = [0.0] * len_r
+
+  for position in range(s1 - 1, e1):
+    position_pct_idy[position] = max(position_pct_idy[position], pct_idy)
+
+for ref, position_pct_idy in ref_position_pct_idy.iteritems():
+  for position, pct_idy in enumerate(position_pct_idy):
+    print_tabbed(ref, position, pct_idy)
