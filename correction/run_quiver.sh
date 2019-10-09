@@ -10,7 +10,7 @@ set -o xtrace
 ###############################################################################
     #ABOUT SCRIPT
 
-#August 8, Kara moser
+#August 8, 2017 Kara moser
 
 #INPUT1: Uncorrected assembly from canu
 #	-Also requires the .bax.h5 files from the raw PacBio Data
