@@ -22,6 +22,13 @@ set -o xtrace
 
 #OUTPUT: Polished assembly with quiver 2x
 
+#Notes: if the below pipeline does not work (specifically an error occurs in pbalign):
+#       Run pbalign on individual cells with separate fofns
+#       Merge: cmph5tools.py merge --outFile out_all.cmp.h5 <list of cmp.h5s>
+#       Sort: cmph5tools.py sort --outFile out_all.sort.cmp.h5 out_all.cmp.h5
+
+#       Additionally, Quiver is now outdated. Future projects should use blasr. 
+
 ###############################################################################
 
 #change as needed
