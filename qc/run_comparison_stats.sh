@@ -16,7 +16,11 @@ export LC_ALL=C
 
 #August 2018, Kara Moser
 
-#modified from: /home/edrabek/daily/1601/25/do_pilon_corrections
+# Pipeline developed by Kara Moser and Elliot Drabek
+# Master script written by Kara Moser
+# Auxillary scripts written by Elliot Drabek
+
+# modified from: /home/edrabek/daily/1601/25/do_pilon_corrections
 #               /home/edrabek/daily/1509/21/do_eplas_72
 
 #INPUT1: Illumina-corrected assembly
