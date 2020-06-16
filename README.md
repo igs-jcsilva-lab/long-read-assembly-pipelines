@@ -1,4 +1,4 @@
-# Long Read Assembly Pipelines
+# Long-Read Assembly Pipelines
 ### USE AT YOUR OWN RISK
 
 This directory contains code to generate <i>de novo</i> assemblies from long-read sequencing data (optionally polished with short-read Illumina data). Bash scripts have been created based on data structure at IGS servers. 
