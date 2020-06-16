@@ -10,4 +10,6 @@ To generate assemblies,
 
 ## Manuscripts
 
-- Moser et al. Strains used in whole organism <i>Plasmodium falciparum</i> vaccine trials differ in genome structure, sequence, and immunogenic potential. [Genome Medicine](https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-019-0708-9)
+Pipelines have been used in the below manuscripts: 
+
+- Moser <i>et al</i>. Strains used in whole organism <i>Plasmodium falciparum</i> vaccine trials differ in genome structure, sequence, and immunogenic potential. [Genome Medicine](https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-019-0708-9)
